@@ -1,1 +1,1 @@
-\*\* CMPE 280 Hackathon, March 2024
+CMPE 280 Hackathon, March 2024
