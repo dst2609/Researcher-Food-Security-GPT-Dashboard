@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Footer from "../Footer/Footer";
-import ChatUI from "../ChatUI/ChatUI";
 import Header from "../Header/Header";
 
 import { DndProvider } from "react-dnd";
@@ -134,7 +132,6 @@ export default function Home() {
           )}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
