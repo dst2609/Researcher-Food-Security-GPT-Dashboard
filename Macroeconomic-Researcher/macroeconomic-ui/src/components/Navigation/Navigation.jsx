@@ -12,6 +12,13 @@ import MacrofdiIn from "../Graphs/Macro/MacroFdiIn";
 import GDPOutFlow from "../Graphs/Macro/GDPOutFlow";
 import ImportEgypt from "../Graphs/ImportExport/ImportEgypt";
 import ImportSA from "../Graphs/ImportExport/ImportSA";
+import DebtReservesImports from "../Graphs/Debt/DebtReservesImports";
+import DebtReservesGold from "../Graphs/Debt/DebtReservesGold";
+import DebtReservesExternal from "../Graphs/Debt/DebtReservesExternal";
+import DebtServicePPGIMF from "../Graphs/Debt/DebtServicePPGIMF";
+import DebtServiceTotal from "../Graphs/Debt/DebtServiceTotal";
+import DebtGniCredit from "../Graphs/Debt/DebtGniCredit";
+
 
 const NavBar = (props) => {
   const macroeconomic = [
@@ -54,7 +61,15 @@ const NavBar = (props) => {
 
   const agricultural = [];
 
-  const debt = [];
+  const debt = [
+    { id: 1, name: "Total reserves in months of imports", chart: <DebtReservesImports /> },
+    { id: 2, name: "Total reserves (includes gold, current US$)", chart: <DebtReservesGold /> },
+    { id: 3, name: "Total reserves (% of total external debt)", chart: <DebtReservesExternal /> },
+    { id: 4, name: "Debt service (PPG and IMF only, % of exports of goods, services and primary income)", chart: <DebtServicePPGIMF /> },
+    { id: 5, name: "Total debt service (% of GNI)", chart: <DebtServiceTotal /> },
+    { id: 6, name: "GNI (current US$)", chart: <DebtGniCredit /> },
+  ];
+
   const impexp = [
     { id: 1, name: "Egypt Imports", chart: <ImportEgypt /> },
     { id: 2, name: "Saudi Arabia Imports", chart: <ImportSA /> },

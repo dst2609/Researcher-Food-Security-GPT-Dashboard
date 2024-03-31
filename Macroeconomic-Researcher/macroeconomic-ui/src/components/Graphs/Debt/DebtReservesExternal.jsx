@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
 import { Chart } from 'react-google-charts';
 
-const DebtGniCredit = () => {
+const DebtReservesExternal = () => {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('World');
-  const [chartData, setChartData] = useState([["Year", "GNI credit"]]);
+  const [chartData, setChartData] = useState([["Year", "Total Reserves External"]]);
 
   useEffect(() => {
-
-    //API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291/API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291.csv
-    const csvFileUrl = "./API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291/API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291.csv";
+    const csvFileUrl = "./API_FI.RES.TOTL.DT.ZS_DS2_en_csv_v2_47199/API_FI.RES.TOTL.DT.ZS_DS2_en_csv_v2_47199.csv";
 
     Papa.parse(csvFileUrl, {
       download: true,
@@ -25,7 +23,7 @@ const DebtGniCredit = () => {
 
   useEffect(() => {
     if (selectedCountry !== 'World') {
-      const csvFileUrl = "./API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291/API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291.csv";
+      const csvFileUrl = "./API_FI.RES.TOTL.DT.ZS_DS2_en_csv_v2_47199/API_FI.RES.TOTL.DT.ZS_DS2_en_csv_v2_47199.csv";
       
       Papa.parse(csvFileUrl, {
         download: true,
@@ -33,19 +31,20 @@ const DebtGniCredit = () => {
         skipEmptyLines: true,
         complete: function(results) {
           const rows = results.data.filter(row => row['Country Name'] === selectedCountry);
-          const creditData = rows.map(row => {
+          const reservesData = rows.map(row => {
             const filteredRow = Object.entries(row).filter(([key, value]) => !isNaN(Date.parse(key)) && value);
             return filteredRow.map(([key, value]) => [new Date(key), parseFloat(value)]);
           }).flat();
           setChartData([
-            ["Year", "GNI credit"],
-            ...creditData
+            ["Year", "Total Reserves External"],
+            ...reservesData
           ]);
         },
       });
     }
   }, [selectedCountry]);
 
+  // Handle country selection change
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
   };
@@ -66,16 +65,14 @@ const DebtGniCredit = () => {
           height="400px"
           data={chartData}
           options={{
-            title: `GNI (current US$) for ${selectedCountry}`,
+            title: `Total reserves (% of total external debt) for ${selectedCountry}`,
             hAxis: { title: 'Year' },
-            vAxis: { title: 'GNI (current US$)' },
-            chartPackages: ['corechart'] 
+            vAxis: { title: 'Total reserves (% of total external debt)' },
           }}
-          
         />
       )}
     </div>
   );
 };
 
-export default DebtGniCredit;
+export default DebtReservesExternal;

@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import "./App.css";
-import Login from "./Components/Login/login";
+import Login from "./components/Login/login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Dashboard from "./Components/Dashboard/Dashboard";
-import ChatUI from "./Components/ChatUI/ChatUI";
+import Dashboard from "./components/Dashboard/Dashboard";
+import ChatUI from "./components/ChatUI/ChatUI";
 
 function App() {
   const [count, setCount] = useState(0);
