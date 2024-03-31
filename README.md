@@ -25,19 +25,17 @@ Robust backend architecture to manage data processing, API requests, and serve t
 
 ## Getting Started
 
-## `git clone git@github.com:dst2609/Hackathon.git`
+`git clone git@github.com:dst2609/Hackathon.git`
 
-## `cd Macroeconomic-Researcher/api`
+`cd Macroeconomic-Researcher/api`
+`npm install`
 
-## `npm install`
+`npm start` [Backend is up and running]
+`cd ../macroeconomic-ui`
 
-## `npm start` [Backend is up and running]
+`npm install`
 
-## `cd ../macroeconomic-ui`
-
-## `npm install`
-
-## `npm run dev` [Frontend is up and running at http://localhost:5173/]
+`npm run dev` [Frontend is up and running at http://localhost:5173/]
 
 ---
 
