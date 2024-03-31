@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import Header from "../Header/Header";
 import "./ChatUI.css";
+import { Link } from "react-router-dom";
 
 function formatMessageText(text) {
   // Replace **text** with bold HTML tags, while avoiding replacing within HTML tags
@@ -54,46 +56,52 @@ const ChatUI = () => {
   };
 
   return (
-    <div className="chat-wrapper">
-      <header className="chat-header">
-        The State of Food Security and Nutrition in the World 2023 - OpenAI API
-        Dashboard
-      </header>
-      <div className="chat-body">
-        {chat.map((msg, index) => (
-          <div key={index} className={`chat-message ${msg.sender}`}>
-            {Array.isArray(msg.text) ? (
-              msg.text.map((line) => (
+    <>
+      <Header />
+      <div className="chat-wrapper">
+        <header className="chat-header">
+          The State of Food Security and Nutrition in the World 2023 - OpenAI
+          API Dashboard{" "}
+          <Link to="/home" className="button-home">
+            Home
+          </Link>
+        </header>
+        <div className="chat-body">
+          {chat.map((msg, index) => (
+            <div key={index} className={`chat-message ${msg.sender}`}>
+              {Array.isArray(msg.text) ? (
+                msg.text.map((line) => (
+                  <p
+                    key={line.key}
+                    dangerouslySetInnerHTML={{ __html: line.text }}
+                  />
+                ))
+              ) : (
                 <p
-                  key={line.key}
-                  dangerouslySetInnerHTML={{ __html: line.text }}
+                  dangerouslySetInnerHTML={{
+                    __html: formatMessageText(msg.text),
+                  }}
                 />
-              ))
-            ) : (
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: formatMessageText(msg.text),
-                }}
-              />
-            )}
-          </div>
-        ))}
-        <div ref={chatEndRef} />
+              )}
+            </div>
+          ))}
+          <div ref={chatEndRef} />
+        </div>
+        <div className="chat-controls">
+          <input
+            type="text"
+            value={message}
+            onChange={handleMessageChange}
+            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+            placeholder="Type a new question (e.g., Explain increase prices impact on food security)"
+            className="chat-input"
+          />
+          <button className="button-send" onClick={handleSendMessage}>
+            Send
+          </button>
+        </div>
       </div>
-      <div className="chat-controls">
-        <input
-          type="text"
-          value={message}
-          onChange={handleMessageChange}
-          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-          placeholder="Type a new question (e.g., Explain increase prices impact on food security)"
-          className="chat-input"
-        />
-        <button className="button-send" onClick={handleSendMessage}>
-          Send
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 

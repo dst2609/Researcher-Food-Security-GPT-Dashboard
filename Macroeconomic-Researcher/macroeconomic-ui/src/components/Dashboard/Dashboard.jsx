@@ -3,7 +3,7 @@ import Footer from "../Footer/Footer";
 import ChatUI from "../ChatUI/ChatUI";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
-import ReportUI from "../ReportUI/ReportUI";
+
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useDrag } from "react-dnd";
@@ -222,6 +222,7 @@ export const Basket = ({ basket, setBasket, notes }) => {
       >
         {basket.map((menuItem) => (
           <BasketChart
+            key={menuItem.id}
             id={menuItem.id}
             name={menuItem.name}
             chart={menuItem.chart}
