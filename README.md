@@ -23,8 +23,10 @@ _Dual Mode Support:_ Operates in both network mode (REST Deployment) and local m
 ## Technical Stack
 
 **Frontend: React (Vite)**
+
 Utilizes the latest React features for building a highly interactive and responsive user interface.
 Vite as the build tool for fast development and optimized builds.
+
 **Backend: Node.js**
 Robust backend architecture to manage data processing, API requests, and serve the frontend application.
 
