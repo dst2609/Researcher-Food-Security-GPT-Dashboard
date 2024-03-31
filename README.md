@@ -31,6 +31,7 @@ Robust backend architecture to manage data processing, API requests, and serve t
 `npm install`
 
 `npm start` [Backend is up and running]
+
 `cd ../macroeconomic-ui`
 
 `npm install`
