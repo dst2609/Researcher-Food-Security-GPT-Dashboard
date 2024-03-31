@@ -86,32 +86,12 @@ const NavBar = (props) => {
   ];
 
   const debt = [
-    {
-      id: 1,
-      name: "Total reserves in months of imports",
-      chart: <DebtReservesImports />,
-    },
-    {
-      id: 2,
-      name: "Total reserves (includes gold, current US$)",
-      chart: <DebtReservesGold />,
-    },
-    {
-      id: 3,
-      name: "Total reserves (% of total external debt)",
-      chart: <DebtReservesExternal />,
-    },
-    {
-      id: 4,
-      name: "Debt service (PPG and IMF only, % of exports of goods, services and primary income)",
-      chart: <DebtServicePPGIMF />,
-    },
-    {
-      id: 5,
-      name: "Total debt service (% of GNI)",
-      chart: <DebtServiceTotal />,
-    },
-    { id: 6, name: "GNI (current US$)", chart: <DebtGniCredit /> },
+    { id: 1, name: "Total reserves in months of imports", chart: <DebtReservesImports country={props.country} range={props.range} /> },
+    { id: 2, name: "Total reserves (includes gold, current US$)", chart: <DebtReservesGold  country={props.country} range={props.range}/> },
+    { id: 3, name: "Total reserves (% of total external debt)", chart: <DebtReservesExternal  country={props.country} range={props.range}/> },
+    { id: 4, name: "Debt service (PPG and IMF only, % of exports of goods, services and primary income)", chart: <DebtServicePPGIMF country={props.country} range={props.range} /> },
+    { id: 5, name: "Total debt service (% of GNI)", chart: <DebtServiceTotal country={props.country} range={props.range} /> },
+    { id: 6, name: "GNI (current US$)", chart: <DebtGniCredit country={props.country} range={props.range} /> },
   ];
 
   const impexp = [

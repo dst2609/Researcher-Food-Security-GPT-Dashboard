@@ -1,78 +1,111 @@
-import React, { useEffect, useState } from 'react';
-import Papa from 'papaparse';
-import { Chart } from 'react-google-charts';
+import React, { useEffect, useState } from "react";
+import { Chart } from "react-google-charts";
+import { useSelector } from "react-redux";
 
-const DebtReservesImports = () => {
-  const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState('World');
-  const [chartData, setChartData] = useState([["Year", "Total Reserves"]]);
+export const data = [
+  ['Year', 'China', 'India', 'United States'],
+  [1970, 0, 3.87405485463058, 0],
+  [1971, 0, 7.31278322210153, 0],
+  [1972, 0, 10.39104209832, 0],
+  [1973, 0, 10.5609207971402, 0],
+  [1974, 0, 11.4128967757818, 0],
+  [1975, 0, 8.25835240427036, 0],
+  [1976, 0, 5.43298795763896, 0],
+  [1977, 0, 5.43167189869752, 0],
+  [1978, 0, 5.31354411041866, 0],
+  [1979, 0, 5.38431568252224, 0],
+  [1980, 10.5326240049283, 0, 2.69819403756047],
+  [1981, 11.3291646829965, 0, 3.13704325572387],
+  [1982, 9.41101580026203, 0, 4.10435424650425],
+  [1983, 4.90478599202417, 0, 4.85793321164003],
+  [1984, 5.17138676410905, 0, 3.89280379667813],
+  [1985, 6.72397003156083, 0, 3.26200652316508],
+  [1986, 5.52339377679073, 0, 3.29793754180922],
+  [1987, 5.08372316234093, 0, 3.6257051487683],
+  [1988, 8.50061506335467, 0, 6.1033444059575],
+  [1989, 10.1087909129257, 0, 6.1616545091386],
+  [1990, 3.76716826644376, 0, 4.08221840248436],
+  [1991, 3.15485276716324, 0, 4.83733304803977],
+  [1992, 5.8589383126685, 0, 3.91236503174438],
+  [1993, 6.32825586255357, 0, 2.65356180238078],
+  [1994, 7.71067045739524, 0, 2.92483445465779],
+  [1995, 15.3584570935982, 0, 3.16628101944666],
+  [1996, 15.3155648378232, 0, 3.26503598836953],
+  [1997, 13.6364945397097, 0, 2.6062331938462],
+  [1998, 10.941358639692, 0, 2.80318917307075],
+  [1999, 12.6317565159013, 0, 2.73557589265656],
+  [2000, 15.2992330754394, 0, 2.60169338107099],
+  [2001, 11.442740318432, 0, 2.31231476555185],
+  [2002, 12.9044006224391, 0, 2.39765174502403],
+  [2003, 14.1697653869492, 0, 2.06391324712795],
+  [2004, 15.3932049867437, 0, 1.95523553618241],
+  [2005, 18.0957914112379, 0, 1.66275864603053],
+  [2006, 19.1459316518489, 0, 1.2572687990174],
+  [2007, 25.3897624622569, 0, 1.29127119690474],
+  [2008, 21.8294857327459, 0, 1.07377331452326],
+  [2009, 19.1307572380526, 0, 0.854272096906953],
+  [2010, 19.0830480218235, 0, 0.938134144021971],
+  [2011, 19.5432820448992, 0, 1.11647810305723],
+  [2012, 18.9654201864734, 0, 1.19878399570069],
+  [2013, 17.9357848551809, 0, 1.05559111218244],
+  [2014, 16.7160982737837, 0, 0.903588941772187],
+  [2015, 15.4175323187252, 0, 0.920734980795975],
+  [2016, 13.1417391678264, 0, 1.06599499526028],
+  [2017, 13.754177548943, 0, 1.07901356702484],
+  [2018, 14.6817028192023, 0, 1.92028077353965],
+  [2019, 11.6019861902875, 0, 2.00331890203891],
+  [2020, 11.2625955806057, 0, 1.96135892377522],
+  
+];
 
-  useEffect(() => {
-    const csvFileUrl = "./API_FI.RES.TOTL.MO_DS2_en_csv_v2_62321/API_FI.RES.TOTL.MO_DS2_en_csv_v2_62321.csv";
-
-    Papa.parse(csvFileUrl, {
-      download: true,
-      header: true,
-      skipEmptyLines: true,
-      complete: function(results) {
-        const countriesFromCSV = results.data.map(row => row['Country Name']).filter((value, index, self) => self.indexOf(value) === index);
-        setCountries(countriesFromCSV);
-      },
-    });
-  }, []);
-
-  useEffect(() => {
-    if (selectedCountry !== 'World') {
-      const csvFileUrl = "./API_FI.RES.TOTL.MO_DS2_en_csv_v2_62321/API_FI.RES.TOTL.MO_DS2_en_csv_v2_62321.csv";
-      
-      Papa.parse(csvFileUrl, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-          const rows = results.data.filter(row => row['Country Name'] === selectedCountry);
-          const reservesData = rows.map(row => {
-            const filteredRow = Object.entries(row).filter(([key, value]) => !isNaN(Date.parse(key)) && value);
-            return filteredRow.map(([key, value]) => [new Date(key), parseFloat(value)]);
-          }).flat();
-          setChartData([
-            ["Year", "Total Reserves"],
-            ...reservesData
-          ]);
-        },
-      });
+export function DebtReservesImports(props) {
+  const [chartData, setchartData] = useState([]);
+  const range = useSelector((state) => state.countryRange.range);
+  const country = useSelector((state) => state.countryRange.country);
+  const filterData = () => {
+    let filteredData = [["year", country]];
+    let col = 0;
+    if (country == "USA") {
+      col = 3;
+    } else if (country == "INDIA") {
+      col = 1;
+    } else if (country == "CHINA") {
+      col = 2;
+    } else {
+      setchartData(data);
+      return;
     }
-  }, [selectedCountry]);
-
-  // Handle country selection change
-  const handleCountryChange = (event) => {
-    setSelectedCountry(event.target.value);
+    let startYear = range[0];
+    let endYear = range[1];
+    for (let i = 1; i < data.length; i++) {
+      let currYear = data[i][0];
+      if (currYear <= endYear && currYear >= startYear) {
+        filteredData.push([currYear, data[i][col]]);
+      }
+    }
+    setchartData(filteredData);
   };
 
+  useEffect(() => {
+    console.log(range, country);
+    filterData();
+  }, [range, country]);
+
   return (
-    <div>
-      <label htmlFor="country-select">Country:</label>
-      <select id="country-select" value={selectedCountry} onChange={handleCountryChange}>
-        <option value="World">World</option>
-        {countries.map((country, index) => (
-          <option key={index} value={country}>{country}</option>
-        ))}
-      </select>
-      {selectedCountry !== 'World' && (
-        <Chart
-          chartType="LineChart"
-          width="100%"
-          height="400px"
-          data={chartData}
-          options={{
-            title: `Total Reserves in Months of Imports for ${selectedCountry}`,
-            hAxis: { title: 'Year' },
-            vAxis: { title: 'Total Reserves' },
-          }}
-        />
-      )}
+    <div style={{ marginBottom: "20px" }}>
+      <Chart
+        chartType="LineChart"
+        width="100%"
+        height="250px"
+        data={chartData}
+        options={{
+          hAxis: {
+            format: "#", // Use 'decimal' format to display integers without commas
+          },
+        }}
+      />
     </div>
   );
-};
+}
 
 export default DebtReservesImports;

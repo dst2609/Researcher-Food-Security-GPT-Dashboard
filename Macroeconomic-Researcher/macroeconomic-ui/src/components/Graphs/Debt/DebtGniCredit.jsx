@@ -1,81 +1,126 @@
-import React, { useEffect, useState } from 'react';
-import Papa from 'papaparse';
-import { Chart } from 'react-google-charts';
+import React, { useEffect, useState } from "react";
+import { Chart } from "react-google-charts";
+import { useSelector } from "react-redux";
 
-const DebtGniCredit = () => {
-  const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState('World');
-  const [chartData, setChartData] = useState([["Year", "GNI credit"]]);
 
-  useEffect(() => {
 
-    //API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291/API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291.csv
-    const csvFileUrl = "./API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291/API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291.csv";
+export const data = [
+  ['Year', 'China', 'India', 'United States'],
+  [1960, 59716249310.9742, 36878683724.9837, 546400000000.0],
+  [1961, 50056685957.359, 39026635578.2356, 566800000000.0],
+  [1962, 47209186415.3555, 41934681631.2816, 609200000000.0],
+  [1963, 50706614526.1472, 48186723223.9232, 643100000000.0],
+  [1964, 59708125203.8643, 56175789636.4896, 690700000000.0],
+  [1965, 70436008642.4251, 59210461463.6707, 749000000000.0],
+  [1966, 76720005491.8964, 45536890605.7143, 820100000000.0],
+  [1967, 72881364882.4909, 49790942204.0, 867100000000.0],
+  [1968, 70846276051.4727, 52745455870.6667, 948600000000.0],
+  [1969, 79705614854.7674, 58086661684.0, 1026000000000.0],
+  [1970, 92602634891.6589, 62043816388.0, 1074358000000.0],
+  [1971, 99800593790.9886, 66960356998.0141, 1162927000000.0],
+  [1972, 113689308020.343, 71072538513.1814, 1280507000000.0],
+  [1973, 138543170458.064, 85101941339.1835, 1431849000000.0],
+  [1974, 144188970821.072, 99161036284.4175, 1553299000000.0],
+  [1975, 163429530659.638, 98178114597.7304, 1684554000000.0],
+  [1976, 153939265947.775, 102456488498.932, 1869603000000.0],
+  [1977, 174935933078.663, 121214526178.423, 2082670000000.0],
+  [1978, 218502169137.562, 137110195145.134, 2349856000000.0],
+  [1979, 263711728825.005, 153181094633.748, 2614260000000.0],
+  [1980, 306066470902.296, 186762452323.637, 2847221000000.0],
+  [1981, 289453378545.028, 193536164464.102, 3202274000000.0],
+  [1982, 284304672988.111, 200057147722.277, 3371652000000.0],
+  [1983, 305906904221.289, 217346717498.831, 3614271000000.0],
+  [1984, 315267176155.172, 210959681010.072, 4032481000000.0],
+  [1985, 310676803013.587, 231343824754.848, 4310272000000.0],
+  [1986, 300491204520.969, 247574348946.154, 4516740000000.0],
+  [1987, 326874403146.073, 277014075282.415, 4829096000000.0],
+  [1988, 407683670393.058, 293483983654.525, 5256272000000.0],
+  [1989, 456518122063.159, 292602575946.815, 5598542000000.0],
+  [1990, 395620747349.055, 316775332518.038, 5902482000000.0],
+  [1991, 414215429575.084, 265995400854.861, 6097007000000.0],
+  [1992, 493384961883.002, 283798978165.926, 6435893000000.0],
+  [1993, 617827946511.628, 275444141432.969, 6734288000000.0],
+  [1994, 563285859689.748, 323108717804.17, 7170956000000.0],
+  [1995, 722711422468.786, 356252288641.836, 7575542000000.0],
+  [1996, 851312277321.562, 389211880588.551, 8046960000000.0],
+  [1997, 950598333545.843, 412313850436.229, 8590598000000.0],
+  [1998, 1012416756142.5, 417792779082.3, 9136625000000.0],
+  [1999, 1079540025875.19, 455259488556.383, 9691392000000.0],
+  [2000, 1196666294912.7, 463418960195.248, 10385197000000.0],
+  [2001, 1320227796243.79, 481233322101.917, 10749023000000.0],
+  [2002, 1455612429060.58, 511490036317.737, 11056572000000.0],
+  [2003, 1650062101087.62, 603192892965.562, 11539140000000.0],
+  [2004, 1950215158851.83, 704168745476.478, 12322009000000.0],
+  [2005, 2269852493014.37, 814482820619.963, 13170993000000.0],
+  [2006, 2746976328906.05, 932915277251.682, 14071835000000.0],
+  [2007, 3558368430392.41, 1211641639990.71, 14557597000000.0],
+  [2008, 4622902194453.46, 1191736971828.07, 14723881000000.0],
+  [2009, 5093159063362.56, 1333878515185.91, 14436590000000.0],
+  [2010, 6061119730102.3, 1657660502177.3, 15185160000000.0],
+  [2011, 7481168651331.33, 1807020595453.6, 15861958000000.0],
+  [2012, 8512367896307.12, 1806177396659.4, 16640301000000.0],
+  [2013, 9492643372933.55, 1833600950845.86, 17140708000000.0],
+  [2014, 10488924466511.7, 2015014420881.04, 17984237000000.0],
+  [2015, 11008790517173.1, 2079182865638.45, 18608138000000.0],
+  [2016, 11177613255096.9, 2268496715258.95, 18983369000000.0],
+  [2017, 12294360422000.8, 2622801076651.4, 19837150000000.0],
+  [2018, 13833878514023.0, 2673994276922.96, 20883383000000.0],
+  [2019, 14239959159195.7, 2808367623253.76, 21760847000000.0],
+  [2020, 14570138554163.6, 2635665834172.74, 21479588000000.0],
+  [2021, 17696312719649.2, 3087256242811.22, 23783037000000.0],
+  [2022, 17770852261279.9, 3348316846596.3, 25978277000000.0],
+  
+];
 
-    Papa.parse(csvFileUrl, {
-      download: true,
-      header: true,
-      skipEmptyLines: true,
-      complete: function(results) {
-        const countriesFromCSV = results.data.map(row => row['Country Name']).filter((value, index, self) => self.indexOf(value) === index);
-        setCountries(countriesFromCSV);
-      },
-    });
-  }, []);
 
-  useEffect(() => {
-    if (selectedCountry !== 'World') {
-      const csvFileUrl = "./API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291/API_NY.GNP.MKTP.CD_DS2_en_csv_v2_61291.csv";
-      
-      Papa.parse(csvFileUrl, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-          const rows = results.data.filter(row => row['Country Name'] === selectedCountry);
-          const creditData = rows.map(row => {
-            const filteredRow = Object.entries(row).filter(([key, value]) => !isNaN(Date.parse(key)) && value);
-            return filteredRow.map(([key, value]) => [new Date(key), parseFloat(value)]);
-          }).flat();
-          setChartData([
-            ["Year", "GNI credit"],
-            ...creditData
-          ]);
-        },
-      });
+export function DebtGniCredit(props) {
+  const [chartData, setchartData] = useState([]);
+  const range = useSelector((state) => state.countryRange.range);
+  const country = useSelector((state) => state.countryRange.country);
+  const filterData = () => {
+    let filteredData = [["year", country]];
+    let col = 0;
+    if (country == "USA") {
+      col = 3;
+    } else if (country == "INDIA") {
+      col = 1;
+    } else if (country == "CHINA") {
+      col = 2;
+    } else {
+      setchartData(data);
+      return;
     }
-  }, [selectedCountry]);
-
-  const handleCountryChange = (event) => {
-    setSelectedCountry(event.target.value);
+    let startYear = range[0];
+    let endYear = range[1];
+    for (let i = 1; i < data.length; i++) {
+      let currYear = data[i][0];
+      if (currYear <= endYear && currYear >= startYear) {
+        filteredData.push([currYear, data[i][col]]);
+      }
+    }
+    setchartData(filteredData);
   };
 
+  useEffect(() => {
+    console.log(range, country);
+    filterData();
+  }, [range, country]);
+
   return (
-    <div>
-      <label htmlFor="country-select">Country:</label>
-      <select id="country-select" value={selectedCountry} onChange={handleCountryChange}>
-        <option value="World">World</option>
-        {countries.map((country, index) => (
-          <option key={index} value={country}>{country}</option>
-        ))}
-      </select>
-      {selectedCountry !== 'World' && (
-        <Chart
-          chartType="LineChart"
-          width="100%"
-          height="400px"
-          data={chartData}
-          options={{
-            title: `GNI (current US$) for ${selectedCountry}`,
-            hAxis: { title: 'Year' },
-            vAxis: { title: 'GNI (current US$)' },
-            chartPackages: ['corechart'] 
-          }}
-          
-        />
-      )}
+    <div style={{ marginBottom: "20px" }}>
+      <Chart
+        chartType="LineChart"
+        width="100%"
+        height="250px"
+        data={chartData}
+        options={{
+          hAxis: {
+            format: "#", // Use 'decimal' format to display integers without commas
+          },
+        }}
+      />
     </div>
   );
-};
+}
 
 export default DebtGniCredit;
