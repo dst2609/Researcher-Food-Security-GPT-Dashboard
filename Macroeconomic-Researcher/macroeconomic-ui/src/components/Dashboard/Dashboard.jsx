@@ -22,13 +22,11 @@ import ImportsSARice from "../Graphs/Imports/ImportsSARice";
 import ImportsSAWheat from "../Graphs/Imports/ImportsSAWheat";
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState("chat"); // Default to chat
+  const [activeTab, setActiveTab] = useState("macro-gdp"); // Default to macro-gpd
 
   // Function to render the active component based on the active tab
   const renderActiveTab = (tab) => {
     switch (tab) {
-      case "chat":
-        return <ChatUI />;
       case "macro-gdp":
         return <MacroGDP />;
       case "macro-fdiIn":
@@ -57,6 +55,8 @@ const Dashboard = () => {
         return <ImportsEgyWheat />;
       case "imports-egy-rice":
         return <ImportsEgyRice />;
+      case "chat":
+        return <ChatUI />;
 
       // Add cases for other tabs............. <<>>
       default:
@@ -69,11 +69,7 @@ const Dashboard = () => {
       <Header />
       <div className="dashboard-main">
         <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
-        <div className="dashboard-content">
-          {renderActiveTab(activeTab)}
-
-          {/* {activeTab === "reports" && <ReportUI />} */}
-        </div>
+        <div className="dashboard-content">{renderActiveTab(activeTab)}</div>
       </div>
       <Footer />
     </div>
