@@ -167,7 +167,10 @@ export const Notes = (props) => {
 
   const closeNote = () => {
     props.closeNote(notes);
+    // Save the notes to localStorage when the note is submitted
+    localStorage.setItem("annotation", notes);
   };
+
   return (
     <div>
       <div
@@ -181,6 +184,7 @@ export const Notes = (props) => {
           onChange={(e) => setNotes(e.target.value)}
           type="text"
           placeholder="Add Notes here.."
+          value={notes} // Ensure the textarea displays the current state
         ></textarea>{" "}
         <br />
         <button onClick={closeNote} style={{ height: "30px" }}>
