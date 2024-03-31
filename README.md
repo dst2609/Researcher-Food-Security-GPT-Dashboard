@@ -1,6 +1,6 @@
 # CMPE 280 Hackathon, March 2024
 
-## Macroeconomic Researcher Dashboard
+## Macroeconomic Researcher Food Security Time Series and Large Language Chat GPT Dashboard
 
 **Overview**
 The Macroeconomic Researcher Dashboard is a cutting-edge platform designed to enhance the understanding and analysis of global food security and nutrition dynamics. With a focus on macroeconomic indicators and their impact on food security, this dashboard provides researchers and policymakers with timely, accurate, and actionable insights. Utilizing a blend of time series visualization and natural language interaction, the platform offers a comprehensive tool for analyzing trends, making predictions, and deriving solutions to some of the world's most pressing issues.
