@@ -35,6 +35,7 @@ Robust backend architecture to manage data processing, API requests, and serve t
 `git clone git@github.com:dst2609/Hackathon.git`
 
 `cd Macroeconomic-Researcher/api`
+
 `npm install`
 
 `npm start` [Backend is up and running]
