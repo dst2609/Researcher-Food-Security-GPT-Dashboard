@@ -1,0 +1,20 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.dashboard-main {
+  display: flex;
+  flex: 1;
+}
+
+.dashboard-navigation {
+  flex-basis: 200px;
+  flex-shrink: 0; /* Prevent shrinking below flex-basis */
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  overflow-y: auto; /* Add scroll for content if needed */
+}
