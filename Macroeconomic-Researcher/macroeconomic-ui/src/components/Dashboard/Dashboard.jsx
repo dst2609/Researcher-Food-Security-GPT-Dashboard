@@ -18,7 +18,7 @@ export default function Home() {
   const [selectedCountry, setSelectedCountry] = useState("India");
   const [persona, setSelectedPersona] = useState("Economic Researcher");
   const [basket, setBasket] = useState([]);
-  const [range, setRange] = useState([1960, 2020]);
+  const [range, setRange] = useState([1960, 2023]);
   const dispatch = useDispatch();
   const handleCountryChange = (country) => {
     setSelectedCountry(country);

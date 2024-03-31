@@ -4,6 +4,12 @@ import { MenuCard } from "../Dashboard/Dashboard";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DataChart } from "../Graphs/Macro/MacroGDPGrowth";
+import { MacroCurrentGDP } from "../Graphs/Macro/MacroCurrentGDP";
+import { MacrofdiNet} from "../Graphs/Macro/MacrofdiNet";
+import {CurrentAccBalance} from "../Graphs/Macro/CurrentAccBalance";
+import {MacroFdiOut} from "../Graphs/Macro/MacroFdiOut";
+import MacrofdiIn from "../Graphs/Macro/MacroFdiIn";
+import GDPOutFlow from "../Graphs/Macro/GDPOutFlow";
 
 
 const NavBar = (props) => {
@@ -12,6 +18,36 @@ const NavBar = (props) => {
       id: 1,
       name: "GDP Growth Rate",
       chart: <DataChart country={props.country} range={props.range} />,
+    },
+    {
+      id: 2,
+      name: "GDP Current USD",
+      chart: <MacroCurrentGDP country={props.country} range={props.range} />,
+    },
+    {
+      id: 3,
+      name: "Filtered Account Balance",
+      chart: <CurrentAccBalance country={props.country} range={props.range} />,
+    },
+    {
+      id: 4,
+      name: "Macro Foreign direct investment, net ",
+      chart: <MacrofdiNet country={props.country} range={props.range} />,
+    },
+    {
+      id: 5,
+      name: "Macro Foreign direct investment, out ",
+      chart: <MacroFdiOut country={props.country} range={props.range} />,
+    },
+    {
+      id: 6,
+      name: "Macro Foreign direct investment, In ",
+      chart: <MacrofdiIn country={props.country} range={props.range} />,
+    },
+    {
+      id: 7,
+      name: "FDI-NetOutflows(%ofGDP)",
+      chart: <GDPOutFlow country={props.country} range={props.range} />,
     },
     
   ];

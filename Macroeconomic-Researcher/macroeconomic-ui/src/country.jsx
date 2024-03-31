@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  range: [1960, 2020],
+  range: [1960, 2023],
   country: "China",
 };
 export const CountryRangeSlice = createSlice({
