@@ -244,9 +244,9 @@ export const Basket = ({ basket, setBasket, notes }) => {
         className="basket"
         ref={dropRef}
       >
-        {basket.map((menuItem) => (
+        {basket.map((menuItem, index) => (
           <BasketChart
-            key={menuItem.id}
+            key={`${menuItem.id}-${index}`}
             id={menuItem.id}
             name={menuItem.name}
             chart={menuItem.chart}

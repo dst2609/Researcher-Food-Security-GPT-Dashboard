@@ -18,7 +18,10 @@ import DebtReservesExternal from "../Graphs/Debt/DebtReservesExternal";
 import DebtServicePPGIMF from "../Graphs/Debt/DebtServicePPGIMF";
 import DebtServiceTotal from "../Graphs/Debt/DebtServiceTotal";
 import DebtGniCredit from "../Graphs/Debt/DebtGniCredit";
-
+import FertilizerProductionChart from "../Graphs/Agriculture/FertilizerProductionChart";
+import FertilizersDataChart from "../Graphs/Agriculture/FertilizersDataChart";
+import ForestFishery from "../Graphs/Agriculture/ForestFishery";
+import ManufacturingData from "../Graphs/Agriculture/ManufacturingData";
 
 const NavBar = (props) => {
   const macroeconomic = [
@@ -59,14 +62,55 @@ const NavBar = (props) => {
     },
   ];
 
-  const agricultural = [];
+  const agricultural = [
+    {
+      id: 1,
+      name: "Fertilizers Data Chart",
+      chart: <FertilizersDataChart />,
+    },
+    {
+      id: 2,
+      name: "Fertilizers Production Chart",
+      chart: <FertilizerProductionChart />,
+    },
+    {
+      id: 3,
+      name: "Forestry and Fish Chart",
+      chart: <ForestFishery />,
+    },
+    {
+      id: 4,
+      name: "Manufacturing Data Chart",
+      chart: <ManufacturingData />,
+    },
+  ];
 
   const debt = [
-    { id: 1, name: "Total reserves in months of imports", chart: <DebtReservesImports /> },
-    { id: 2, name: "Total reserves (includes gold, current US$)", chart: <DebtReservesGold /> },
-    { id: 3, name: "Total reserves (% of total external debt)", chart: <DebtReservesExternal /> },
-    { id: 4, name: "Debt service (PPG and IMF only, % of exports of goods, services and primary income)", chart: <DebtServicePPGIMF /> },
-    { id: 5, name: "Total debt service (% of GNI)", chart: <DebtServiceTotal /> },
+    {
+      id: 1,
+      name: "Total reserves in months of imports",
+      chart: <DebtReservesImports />,
+    },
+    {
+      id: 2,
+      name: "Total reserves (includes gold, current US$)",
+      chart: <DebtReservesGold />,
+    },
+    {
+      id: 3,
+      name: "Total reserves (% of total external debt)",
+      chart: <DebtReservesExternal />,
+    },
+    {
+      id: 4,
+      name: "Debt service (PPG and IMF only, % of exports of goods, services and primary income)",
+      chart: <DebtServicePPGIMF />,
+    },
+    {
+      id: 5,
+      name: "Total debt service (% of GNI)",
+      chart: <DebtServiceTotal />,
+    },
     { id: 6, name: "GNI (current US$)", chart: <DebtGniCredit /> },
   ];
 
