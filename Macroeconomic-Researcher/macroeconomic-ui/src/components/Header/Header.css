@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    justify-content: center; /* Horizontally center align the children */
+    align-items: center; /* Vertically center align the children */
+    height: 200px; /* Adjust the height as needed */
+  }
+  
+  .img-class {
+    margin: 0 20px; /* Add margin for spacing between images */
+  }
+  
+  .header-elements {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 300;
+    color: #70739c;
+    font-family: 'Noto Serif', serif;
+  }
