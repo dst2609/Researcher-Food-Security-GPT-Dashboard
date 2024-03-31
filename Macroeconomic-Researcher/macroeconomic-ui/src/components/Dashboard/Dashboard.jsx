@@ -44,6 +44,20 @@ export default function Home() {
     dispatch(setRRange(newValue));
   };
 
+  // Function to return the flag image URL based on the selected country
+  const getFlagImageUrl = (country) => {
+    switch (country.toUpperCase()) {
+      case "USA":
+        return "https://upload.wikimedia.org/wikipedia/commons/d/de/Flag_of_the_United_States.png";
+      case "INDIA":
+        return "https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_India.png";
+      case "CHINA":
+        return "https://upload.wikimedia.org/wikipedia/commons/2/2e/Flag_of_China.png";
+      default:
+        return ""; // Default case if no country is matched
+    }
+  };
+
   return (
     <div>
       <div className="row">
@@ -54,6 +68,13 @@ export default function Home() {
           <NavBar country={selectedCountry} range={range} />
         </div>
         <div className="right-area">
+          {selectedCountry && (
+            <img
+              src={getFlagImageUrl(selectedCountry)}
+              alt={`${selectedCountry} flag`}
+              style={{ width: "50px", height: "auto" }}
+            />
+          )}
           <div className="top-right-area">
             <div className="slider-area">
               <Slider
@@ -84,8 +105,8 @@ export default function Home() {
                 }}
                 style={{ marginBottom: "10px" }}
               >
-                <option>CHINA</option>
                 <option>INDIA</option>
+                <option>CHINA</option>
                 <option>USA</option>
               </select>
               <select
