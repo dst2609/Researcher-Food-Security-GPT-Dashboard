@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Footer from "../Footer/Footer";
 import ChatUI from "../ChatUI/ChatUI";
 import Header from "../Header/Header";
-import Navigation from "../Navigation/Navigation";
 
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -19,6 +18,8 @@ export default function Home() {
   const [persona, setSelectedPersona] = useState("Economic Researcher");
   const [basket, setBasket] = useState([]);
   const [range, setRange] = useState([1960, 2023]);
+  const [activeCategory, setActiveCategory] = useState("");
+
   const dispatch = useDispatch();
   const handleCountryChange = (country) => {
     setSelectedCountry(country);

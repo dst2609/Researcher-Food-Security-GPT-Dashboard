@@ -1,3 +1,8 @@
+.main-content {
+  display: flex;
+  flex-direction: row;
+}
+
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -11,10 +16,108 @@
 
 .dashboard-navigation {
   flex-basis: 200px;
-  flex-shrink: 0; /* Prevent shrinking below flex-basis */
+  flex-shrink: 0;
 }
 
 .dashboard-content {
   flex-grow: 1;
-  overflow-y: auto; /* Add scroll for content if needed */
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.basket {
+  width: 800px;
+  height: 600px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.top-right-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.right-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.slider-area {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.dropdowns {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.side-nav-bar {
+  width: 400px;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+select {
+  padding: 8px;
+  margin: 0 10px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.drag-drop-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.pet-card {
+  background-color: #ffffff;
+  border: 2px solid #cccccc;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  cursor: grab;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 250px;
+}
+
+.pet-card:active {
+  cursor: grabbing;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pet-card::before {
+  content: "⋮⋮";
+  display: inline-block;
+  font-size: 15px;
+  margin-right: 10px;
+  color: #999999;
+  vertical-align: middle;
+}
+
+.pet-card:hover {
+  background-color: #f8f8f8;
+  border-color: #bbbbbb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }

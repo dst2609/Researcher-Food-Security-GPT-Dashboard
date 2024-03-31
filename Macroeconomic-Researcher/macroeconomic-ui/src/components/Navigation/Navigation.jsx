@@ -88,7 +88,7 @@ const NavBar = (props) => {
         </div>
       </div>
 
-      <div className="nav-main-elements">
+      <div className="nav-main-elements-macro">
         <Link className="link" to="/home" onClick={() => toggleContent("agri")}>
           Agricultural
         </Link>
@@ -108,7 +108,7 @@ const NavBar = (props) => {
           </DndProvider>
         </div>
       </div>
-      <div className="nav-main-elements">
+      <div className="nav-main-elements-macro">
         <Link className="link" to="/home" onClick={() => toggleContent("debt")}>
           Debt
         </Link>
@@ -128,19 +128,14 @@ const NavBar = (props) => {
           </DndProvider>
         </div>
       </div>
-      {/* <div className="nav-main-elements">
-        <Link className="link" to="/home">
-          Imports
-        </Link>
-      </div> */}
 
-      <div className="nav-main-elements">
+      <div className="nav-main-elements-macro">
         <Link
           className="impexp"
           to="/home"
           onClick={() => toggleContent("impexp")}
         >
-          Import-Export
+          Import-Trades
         </Link>
         <div id="impexp" style={{ display: "none" }}>
           <DndProvider backend={HTML5Backend}>
