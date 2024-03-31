@@ -46,3 +46,12 @@ Robust backend architecture to manage data processing, API requests, and serve t
 ---
 
 _For `.env` file and API key, please contact Devarsh Thaker - devarsht@gmail.com_
+
+---
+
+### Authors
+
+- Devarsh Thaker
+- Yashvi Desai
+- Priyanka Shah
+- Piyush Gade
