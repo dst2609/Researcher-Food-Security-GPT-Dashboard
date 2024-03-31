@@ -11,6 +11,7 @@ import { MacroFdiOut } from "../Graphs/Macro/MacroFdiOut";
 import MacrofdiIn from "../Graphs/Macro/MacroFdiIn";
 import GDPOutFlow from "../Graphs/Macro/GDPOutFlow";
 import ImportEgypt from "../Graphs/ImportExport/ImportEgypt";
+import ImportSA from "../Graphs/ImportExport/ImportSA";
 
 const NavBar = (props) => {
   const macroeconomic = [
@@ -54,7 +55,10 @@ const NavBar = (props) => {
   const agricultural = [];
 
   const debt = [];
-  const impexp = [{ id: 1, name: "Egypt Imports", chart: <ImportEgypt /> }];
+  const impexp = [
+    { id: 1, name: "Egypt Imports", chart: <ImportEgypt /> },
+    { id: 2, name: "Saudi Arabia Imports", chart: <ImportSA /> },
+  ];
 
   return (
     <div>
